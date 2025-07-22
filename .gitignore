@@ -420,3 +420,5 @@ FodyWeavers.xsd
 
 # Generated BitMaps
 *.bmp
+Rasterizer/Rasterizer.vcxproj
+Rasterizer/Rasterizer.vcxproj.filters
