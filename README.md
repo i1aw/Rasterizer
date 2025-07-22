@@ -8,3 +8,8 @@ A simple rasterizer made from stratch to help me learn c++.
 - [ ] Draw object
 - [ ] Light faces
 - [ ] Load .obj files
+
+## Future directions
+- [ ] Make terrian generation
+- [ ] Render Videos
+- [ ] Render in window
