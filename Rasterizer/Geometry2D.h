@@ -69,6 +69,7 @@ public:
 	*/
 	void Perp();
 	double operator*(Vector2D other);
+	bool operator==(Vector2D other);
 
 };
 
@@ -77,12 +78,15 @@ public:
 * @brief A 2d triangle made of 3 vectors
 */
 class Triangle2D {
+	Vector2D vectors[3];
 
+	void CalculateVectors();
 public:
 	/**
 	* @brief Creates a triangle
 	*/
 	Triangle2D();
+
 	/**
 	* @brief Creates a triangle made of the points A, B, and C
 	* @param A The first point of the triangle
@@ -91,11 +95,17 @@ public:
 	* @note for compatibility with rasterizer, initialize A, B, and C clockwise
 	*/
 	Triangle2D(Point2D A, Point2D B, Point2D C);
-	Vector2D lines[3];
+
 	/**
-	* @brief returns if a point is in a triangle
+	* @brief Returns if a point is in a triangle
 	* @param point The point to check
 	* @return Returns if the point is in the triangle
 	*/
 	bool PointInTriangle(Point2D point);
+
+	/**
+	* @brief The vertexes that make up the triangle
+	*/
+	Point2D vertexes[3];
+
 };
