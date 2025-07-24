@@ -73,6 +73,17 @@ void BMP::Set(int x, int y, uint8_t red, uint8_t green, uint8_t blue) {
 	}
 }
 
+void BMP::Fill(Color color) {
+	if (colormap == nullptr) {
+		return;
+	}
+	for (int x = 0; x < width; x++) {
+		for (int y = 0; y < height; y++) {
+			colormap[x][y] = color;
+		}
+	}
+}
+
 std::ostream& operator<<(std::ostream& stream, const Color& pixel) {
 	stream << '(' << (int)pixel.red << ", " << (int)pixel.green << ", " << (int)pixel.blue << ")\n";
 	return stream;

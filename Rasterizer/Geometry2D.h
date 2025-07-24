@@ -9,6 +9,13 @@ struct Point2D {
 	int y = 0;
 };
 
+Point2D operator-(Point2D a, Point2D b);
+Point2D operator+(Point2D a, Point2D b);
+Point2D operator*(double a, Point2D b);
+Point2D operator*(Point2D a, double b);
+Point2D operator/(double a, Point2D b);
+Point2D operator/(Point2D a, double b);
+
 /**
 * @class Vector2D
 * @brief Contains a start and end point

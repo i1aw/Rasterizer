@@ -1,5 +1,29 @@
 #include "geometry2D.h"
 
+Point2D operator-(Point2D a, Point2D b) {
+	return { a.x - b.x, a.y - b.y};
+}
+
+Point2D operator+(Point2D a, Point2D b) {
+	return { a.x + b.x, a.y + b.y };
+}
+
+Point2D operator*(double a, Point2D b) {
+	return { (int)(a * b.x), (int)(a * b.y) };
+}
+
+Point2D operator*(Point2D a, double b) {
+	return { (int)(b * a.x), (int)(b * a.y) };
+}
+
+Point2D operator/(double a, Point2D b) {
+	return { (int)(b.x / a), (int)(b.y / a) };
+}
+
+Point2D operator/(Point2D a, double b) {
+	return { (int)(a.x / b), (int)(a.y / b) };
+}
+
 void Vector2D::Perp() {
 	int temp = 0;
 

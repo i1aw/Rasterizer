@@ -98,6 +98,13 @@ public:
 	*/
 	void Set(int x, int y, uint8_t red, uint8_t green, uint8_t blue);
 
+
+	/**
+	* @brief Fills pixel array with color
+	* @param color The color to fill
+	*/
+	void Fill(Color color);
+
 };
 
 std::ostream& operator<<(std::ostream& stream, const Color& pixel);

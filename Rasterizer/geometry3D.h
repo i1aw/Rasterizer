@@ -9,6 +9,9 @@ struct Point3D {
 	int z = 0;
 };
 
+Point3D operator+(Point3D a, Point3D b);
+Point3D operator-(Point3D a, Point3D b);
+
 /**
 * @class Triangle3D
 * @brief A 3D triangle
