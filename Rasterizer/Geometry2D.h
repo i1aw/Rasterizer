@@ -2,7 +2,7 @@
 #include <iostream>
 
 /**
-* A 2D coordinate point
+* @brief A 2D coordinate point
 */
 struct Point2D {
 	int x = 0;
@@ -75,7 +75,7 @@ public:
 
 /**
 * @class Triangle2D
-* @brief A 2d triangle made of 3 vectors
+* @brief A 2D triangle
 */
 class Triangle2D {
 	Vector2D vectors[3];
