@@ -85,6 +85,9 @@ public:
 * @brief A 2D triangle
 */
 class Triangle2D {
+	Vector2D prevVectors[3];
+	bool initialCalculation = false;
+
 	Vector2D vectors[3];
 
 	void CalculateVectors();

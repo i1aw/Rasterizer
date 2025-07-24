@@ -69,9 +69,6 @@ bool Vector2D::operator==(Vector2D other) {
 }
 
 void Triangle2D::CalculateVectors() {
-	static Vector2D prevVectors[3];
-	static bool initialCalculation = false;
-	
 	if (   
 		initialCalculation &&
 		prevVectors[0] == vectors[0] &&
