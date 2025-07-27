@@ -38,10 +38,10 @@ void BMP::SetSize(int width, int height) {
 		
 	}
 
-	colormap = new Color*[width];
+	colormap = new RGBColor*[width];
 
 	for (int i = 0; i < width; i++) {
-		colormap[i] = new Color[height];
+		colormap[i] = new RGBColor[height];
 	}
 }
 
@@ -53,13 +53,13 @@ void BMP::SetFilepath(const char* filepath) {
 	strcpy(this->filepath, filepath);
 }
 
-Color& BMP::at(int x, int y) {
+RGBColor& BMP::at(int x, int y) {
 	if (colormap != nullptr) {
 		return colormap[x][y];
 	}
 }
 
-void BMP::Set(int x, int y, Color p) {
+void BMP::Set(int x, int y, RGBColor p) {
 	if (colormap != nullptr) {
 		colormap[x][y] = p;
 	}
@@ -73,7 +73,7 @@ void BMP::Set(int x, int y, uint8_t red, uint8_t green, uint8_t blue) {
 	}
 }
 
-void BMP::Fill(Color color) {
+void BMP::Fill(RGBColor color) {
 	if (colormap == nullptr) {
 		return;
 	}
@@ -84,7 +84,7 @@ void BMP::Fill(Color color) {
 	}
 }
 
-std::ostream& operator<<(std::ostream& stream, const Color& pixel) {
+std::ostream& operator<<(std::ostream& stream, const RGBColor& pixel) {
 	stream << '(' << (int)pixel.red << ", " << (int)pixel.green << ", " << (int)pixel.blue << ")\n";
 	return stream;
 }
@@ -153,7 +153,7 @@ void BMP::WritePixels(std::ofstream& file) {
 
 	for (int y = 0; y < height; y++) {
 		for (int x = 0; x < width; x++) {
-			Color current = at(x, y);
+			RGBColor current = at(x, y);
 			char color[3] = {
 				(char)(current.blue),
 				(char)(current.green),

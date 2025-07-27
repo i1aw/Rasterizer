@@ -2,6 +2,7 @@
 #include <iostream>
 #include "bitmapBuilder.h"
 #include "Geometry2D.h"
+#include "window.h"
 
 /**
 * @class Rasterizer
@@ -30,5 +31,15 @@ public:
 	* @param color RGB color to use
 	*
 	*/
-	void DrawTriangle(Triangle2D t, Color c);
+	void DrawTriangle(Triangle2D t, RGBColor c);
+
+	/**
+	* Set all pixels within triangle to color
+	*
+	* @param window The window to draw too
+	* @param triangle 2D triangle object to draw
+	* @param color RGB color to use
+	*
+	*/
+	void DrawTriangle(Window window, Triangle2D triangle, RGBColor color);
 };

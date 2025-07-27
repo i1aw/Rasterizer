@@ -2,26 +2,26 @@
 #include "geometry3D.h"
 #include "geometry2D.h"
 
-class Camera {
+class ProjectorCamera {
 public:
 
 	/** 
 	* @brief Constructs a new Camera object
 	*/
-	Camera() {};
+	ProjectorCamera() {};
 
 	/**
 	* @brief Constructs a new Camera object
 	* @param position The 3D position of the Camera
 	*/
-	Camera(Point3D position) : position(position) {};
+	ProjectorCamera(Point3D position) : position(position) {};
 
 	/**
 	* @brief Constructs a new Camera object
 	* @param position The 3D position of the Camera
 	* @param fov The field of view of the Camera
 	*/
-	Camera(Point3D position, double fov) : 
+	ProjectorCamera(Point3D position, double fov) : 
 		position(position), 
 		fov(fov) 
 	{};
@@ -33,7 +33,7 @@ public:
 	* @param width The width of the output image
 	* @param height The height of the output image
 	*/
-	Camera(Point3D position, double fov, int width, int height) :
+	ProjectorCamera(Point3D position, double fov, int width, int height) :
 		position(position),
 		fov(fov),
 		width(width),

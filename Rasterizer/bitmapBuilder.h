@@ -1,17 +1,8 @@
 #pragma once
 #define _CRT_SECURE_NO_WARNINGS
-#include <cstdint>
 #include <iostream>
 #include <fstream>
-
-/**
-* @brief A RGB color with values between 0 and 255
-*/
-struct Color {
-	uint8_t red = 0;
-	uint8_t green = 0;
-	uint8_t blue = 0;
-};
+#include "constants.h"
 
 /**
 * @class BMP
@@ -21,7 +12,7 @@ class BMP {
 	char * filepath = nullptr;
 	int width = 0;
 	int height = 0;
-	Color** colormap = nullptr;
+	RGBColor** colormap = nullptr;
 
 	void WriteHeader(std::ofstream& file);
 	void WritePixels(std::ofstream& file);
@@ -79,7 +70,7 @@ public:
 	* @param x The x value of the pixel starting from the left of the image
 	* @param y The y value of the pixel start from the bottom of the image
 	*/
-	Color& at(int x, int y);
+	RGBColor& at(int x, int y);
 
 	/**
 	* @brief Sets the color of pixel in the pixel array at (x,y)
@@ -87,7 +78,7 @@ public:
 	* @param y The y value of the pixel start from the bottom of the image
 	* @param color The color of the pixel
 	*/
-	void Set(int x, int y, Color color);
+	void Set(int x, int y, RGBColor color);
 	/**
 	* @brief Sets the color of pixel in the pixel array at (x,y)
 	* @param x The x value of the pixel starting from the left of the image
@@ -103,8 +94,8 @@ public:
 	* @brief Fills pixel array with color
 	* @param color The color to fill
 	*/
-	void Fill(Color color);
+	void Fill(RGBColor color);
 
 };
 
-std::ostream& operator<<(std::ostream& stream, const Color& pixel);
+std::ostream& operator<<(std::ostream& stream, const RGBColor& pixel);

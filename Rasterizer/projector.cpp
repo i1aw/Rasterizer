@@ -1,7 +1,7 @@
 #include "projector.h"
 #include <cmath>
 
-Point2D Camera::ProjectTo2D(Point3D point) {
+Point2D ProjectorCamera::ProjectTo2D(Point3D point) {
 
 	double fovRadians = fov * (3.14159265 / 180.0);
 
@@ -31,7 +31,7 @@ Point2D Camera::ProjectTo2D(Point3D point) {
 	return projPoint2D;
 }
 
-Triangle2D Camera::ProjectTo2D(Triangle3D triangle) {
+Triangle2D ProjectorCamera::ProjectTo2D(Triangle3D triangle) {
 	Triangle2D projTriangle;
 
 	for (int i = 0; i < 3; i++) {
