@@ -2,6 +2,7 @@
 #include "Geometry2D.h"
 #include <raylib.h>
 #include "constants.h"
+#include "RenderTarget.h"
 
 class Window {
 public:
@@ -14,6 +15,7 @@ public:
 	Window(int width, int height, const char* title);
 	~Window();
 	void Update();
+	void Update(Target& newTexture);
 	void TestTexture();
 	void SetPixel(int x, int y, RGBColor color);
 	void Fill(RGBColor color);

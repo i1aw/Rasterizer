@@ -1,5 +1,6 @@
 #include "window.h"
 #include "constants.h"
+#include "RenderTarget.h"
 
 Window::Window(int width = 600, int height = 400, const char* title="Unnamed Window") {
 	this->width = width;
@@ -56,5 +57,10 @@ void Window::Fill(RGBColor color) {
 
 void Window::Update() {
 	UpdateTexture(texture, textureBytes);
+	DrawTexture(texture, 0, 0, WHITE);
+}
+
+void Window::Update(Target& newTexture) {
+	UpdateTexture(texture, newTexture.texture);
 	DrawTexture(texture, 0, 0, WHITE);
 }

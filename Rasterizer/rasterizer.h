@@ -3,6 +3,7 @@
 #include "bitmapBuilder.h"
 #include "Geometry2D.h"
 #include "window.h"
+#include "RenderTarget.h"
 
 /**
 * @class Rasterizer
@@ -42,4 +43,6 @@ public:
 	*
 	*/
 	void DrawTriangle(Window window, Triangle2D triangle, RGBColor color);
+
+	void DrawTriangle(Target& texture, Triangle2D triangle, RGBColor color);
 };
