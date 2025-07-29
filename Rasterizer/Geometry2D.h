@@ -5,8 +5,8 @@
 * @brief A 2D coordinate point
 */
 struct Point2D {
-	int x = 0;
-	int y = 0;
+	double x = 0;
+	double y = 0;
 };
 
 Point2D operator-(Point2D a, Point2D b);

@@ -9,23 +9,23 @@ Point2D operator+(Point2D a, Point2D b) {
 }
 
 Point2D operator*(double a, Point2D b) {
-	return { (int)(a * b.x), (int)(a * b.y) };
+	return { (a * b.x), (a * b.y) };
 }
 
 Point2D operator*(Point2D a, double b) {
-	return { (int)(b * a.x), (int)(b * a.y) };
+	return { (b * a.x), (b * a.y) };
 }
 
 Point2D operator/(double a, Point2D b) {
-	return { (int)(b.x / a), (int)(b.y / a) };
+	return { (b.x / a), (b.y / a) };
 }
 
 Point2D operator/(Point2D a, double b) {
-	return { (int)(a.x / b), (int)(a.y / b) };
+	return { (a.x / b), (a.y / b) };
 }
 
 void Vector2D::Perp() {
-	int temp = 0;
+	double temp = 0;
 
 	temp = start.x;
 	start.x = -start.y;

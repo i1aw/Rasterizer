@@ -4,9 +4,9 @@
 *  @brief a 3D coordinate point
 */
 struct Point3D {
-	int x = 0;
-	int y = 0;
-	int z = 0;
+	double x = 0;
+	double y = 0;
+	double z = 0;
 };
 
 Point3D operator+(Point3D a, Point3D b);
