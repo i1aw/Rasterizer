@@ -4,19 +4,13 @@
 Point2D ProjectorCamera::ProjectTo2D(Point3D point) {
 
 	double fovRadians = fov * (3.14159265 / 180.0);
-
 	double scale = tan(fovRadians / 2) * 2;
 
-	Point2D centerOffset = { width / 2, height / 2 };
+	Point2D centerOffset = { 1.0 / 2, (0.5 * ((double)height / (double)width)) };
 
 	Point3D projPoint3D = point;
-
 	projPoint3D = projPoint3D - position;
-
 	Point2D projPoint2D = { projPoint3D.x, projPoint3D.y };
-
-	// account for center offset
-	projPoint2D = projPoint2D - centerOffset;
 
 	// do projection assuming focal length is 1
 	projPoint2D.x /= projPoint3D.z;
@@ -25,8 +19,11 @@ Point2D ProjectorCamera::ProjectTo2D(Point3D point) {
 	// correct for FOV
 	projPoint2D = projPoint2D / scale;
 	
+	// account for center offset
 	projPoint2D = projPoint2D + centerOffset;
-	
+
+	// account for screen size
+	projPoint2D = projPoint2D * width;
 
 	return projPoint2D;
 }
