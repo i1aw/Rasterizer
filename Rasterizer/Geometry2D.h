@@ -87,6 +87,10 @@ public:
 class Triangle2D {
 	Vector2D prevVectors[3];
 	bool initialCalculation = false;
+	int startX = 0;
+	int startY = 0;
+	int endX = 0;
+	int endY = 0;
 
 	Vector2D vectors[3];
 
@@ -117,5 +121,14 @@ public:
 	* @brief The vertexes that make up the triangle
 	*/
 	Point2D vertexes[3];
+
+	void UpdateBounds();
+
+	// getters and setters
+
+	int getMinX() const { return startX; }
+	int getMaxX() const { return endX; }
+	int getMinY() const { return startY; }
+	int getMaxY() const { return endY; }
 
 };

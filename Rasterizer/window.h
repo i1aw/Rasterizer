@@ -4,6 +4,7 @@
 #include "constants.h"
 #include "RenderTarget.h"
 
+
 class Window {
 public:
 	int width;

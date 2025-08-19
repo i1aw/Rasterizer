@@ -35,5 +35,7 @@ Triangle2D ProjectorCamera::ProjectTo2D(Triangle3D triangle) {
 		projTriangle.vertexes[i] = ProjectTo2D(triangle.vertexes[i]);
 	}
 
+	projTriangle.UpdateBounds();
+
 	return projTriangle;
 }

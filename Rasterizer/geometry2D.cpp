@@ -100,4 +100,20 @@ Triangle2D::Triangle2D(Point2D A, Point2D B, Point2D C) {
 	vertexes[0] = A;
 	vertexes[1] = B;
 	vertexes[2] = C;
+
+	startX = std::min(std::min(A.x, B.x), C.x);
+	startY = std::min(std::min(A.y, B.y), C.y);
+	endX = std::max(std::max(A.x, B.x), C.x);
+	endY = std::max(std::max(A.y, B.y), C.y);
+}
+
+void Triangle2D::UpdateBounds() {
+	Point2D A = vertexes[0];
+	Point2D B = vertexes[1];
+	Point2D C = vertexes[2];
+
+	startX = std::min(std::min(A.x, B.x), C.x);
+	startY = std::min(std::min(A.y, B.y), C.y);
+	endX = std::max(std::max(A.x, B.x), C.x);
+	endY = std::max(std::max(A.y, B.y), C.y);
 }

@@ -36,3 +36,7 @@ void Target::SetColor(unsigned char*& location, RGBColor c) {
 void Target::SkipPixel(unsigned char*& location) {
 	location += PIXEL_SIZE;
 }
+
+void Target::SkipPixel(unsigned char*& location, int amount) {
+	location += PIXEL_SIZE * amount;
+}

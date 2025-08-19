@@ -15,4 +15,6 @@ public:
 	void Fill(RGBColor c);
 	void SetColor(unsigned char*& location, RGBColor c);
 	void SkipPixel(unsigned char*& location);
+	void SkipPixel(unsigned char*& location, int amount);
+
 };
