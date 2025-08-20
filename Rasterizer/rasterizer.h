@@ -12,18 +12,20 @@
 class Rasterizer {
 public:
 
+	Rasterizer();
+
 	/**
 	* @brief Constructs a Rasterizer with an output file path, width, and height
 	* @param filepath The path to output renderer images to
 	* @param width Output image width
 	* @param height Output image height
 	*/
-	Rasterizer(const char* filepath, int width, int height) : image(filepath, width, height) {};
+	//Rasterizer(const char* filepath, int width, int height) : image(filepath, width, height) {};
 
 	/**
 	* @brief BMP object used to store and output renders
 	*/
-	BMP image;
+	//BMP image;
 
 	/**
 	* Set all pixels within triangle to color
@@ -32,7 +34,7 @@ public:
 	* @param color RGB color to use
 	*
 	*/
-	void DrawTriangle(Triangle2D t, RGBColor c);
+	//void DrawTriangle(Triangle2D t, RGBColor c);
 
 	/**
 	* Set all pixels within triangle to color
@@ -42,7 +44,7 @@ public:
 	* @param color RGB color to use
 	*
 	*/
-	void DrawTriangle(Window window, Triangle2D triangle, RGBColor color);
+	//void DrawTriangle(Window window, Triangle2D triangle, RGBColor color);
 
 	void DrawTriangle(Target& texture, Triangle2D triangle, RGBColor color);
 };

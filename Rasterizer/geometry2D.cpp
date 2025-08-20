@@ -68,31 +68,6 @@ bool Vector2D::operator==(Vector2D other) {
 		other.end.y   == end.y;
 }
 
-void Triangle2D::CalculateVectors() {
-	if (   
-		initialCalculation &&
-		prevVectors[0] == vectors[0] &&
-		prevVectors[1] == vectors[1] &&
-		prevVectors[2] == vectors[2]
-		) 
-	{
-		return; 
-	}
-	initialCalculation = true;
-
-	prevVectors[0] = vectors[0] = Vector2D(vertexes[0], vertexes[1]);
-	prevVectors[1] = vectors[1] = Vector2D(vertexes[1], vertexes[2]);
-	prevVectors[2] = vectors[2] = Vector2D(vertexes[2], vertexes[0]);
-}
-
-bool Triangle2D::PointInTriangle(Point2D p) {
-	CalculateVectors();
-
-	return vectors[0].PointOnRight(p)
-		&& vectors[1].PointOnRight(p)
-		&& vectors[2].PointOnRight(p);
-}
-
 Triangle2D::Triangle2D() {
 }
 

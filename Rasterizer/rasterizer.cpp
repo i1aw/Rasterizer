@@ -2,34 +2,7 @@
 #include "window.h"
 #include "RenderTarget.h"
 
-void Rasterizer::DrawTriangle(Triangle2D triangle, RGBColor color) {
-
-	for (int x = 0; x < image.GetWidth(); x++) {
-		for (int y = 0; y < image.GetHeight(); y++) {
-			Point2D currentPixel = { (double)x,(double)y };
-			if (triangle.PointInTriangle(currentPixel)) {
-				image.at(x, y) = color;
-			}
-		}
-	}
-}
-
-void Rasterizer::DrawTriangle(Window window, Triangle2D triangle, RGBColor color) {
-	window.Fill({ 0,0,0 });
-
-	int startX = std::max(triangle.getMinX(), 0);
-	int endX = std::min(triangle.getMaxX(), image.GetWidth());
-	int startY = std::max(triangle.getMinY(), 0);
-	int endY = std::min(triangle.getMaxY(), image.GetHeight());
-
-	for (int x = startX; x < endX; x++) {
-		for (int y = startY; y < endY; y++) {
-			Point2D currentPixel = { (double)x,(double)y };
-			if (triangle.PointInTriangle(currentPixel)) {
-				window.SetPixel(x, y, color);
-			}
-		}
-	}
+Rasterizer::Rasterizer() {
 }
 
 void Rasterizer::DrawTriangle(Target& texture, Triangle2D triangle, RGBColor color) {
@@ -37,20 +10,49 @@ void Rasterizer::DrawTriangle(Target& texture, Triangle2D triangle, RGBColor col
 	unsigned char* texturePointer = texture.texture;
 
 	int startX = std::max(triangle.getMinX(), 0);
-	int endX = std::min(triangle.getMaxX(), image.GetWidth());
+	int endX = std::min(triangle.getMaxX(), texture.width);
 	int startY = std::max(triangle.getMinY(), 0);
-	int endY = std::min(triangle.getMaxY(), image.GetHeight());
+	int endY = std::min(triangle.getMaxY(), texture.height);
 
 	// skip to first row with triangle
-	texture.SkipPixel(texturePointer, startY * image.GetWidth());
+	texture.SkipPixel(texturePointer, startY * texture.width);
+
+	double deltaX_A = triangle.vertexes[1].x - triangle.vertexes[0].x;
+	double deltaY_A = triangle.vertexes[1].y - triangle.vertexes[0].y;
+
+	double deltaX_B = triangle.vertexes[2].x - triangle.vertexes[1].x;
+	double deltaY_B = triangle.vertexes[2].y - triangle.vertexes[1].y;
+
+	double deltaX_C = triangle.vertexes[0].x - triangle.vertexes[2].x;
+	double deltaY_C = triangle.vertexes[0].y - triangle.vertexes[2].y;
+
 
 	for (int y = endY - 1; y >= startY; y--) {
 
 		// skip to get to the first column
 		texture.SkipPixel(texturePointer, startX);
+
+		double pointPerpX_A = (double)y - triangle.vertexes[0].y;
+		double pointPerpX_B = (double)y - triangle.vertexes[1].y;
+		double pointPerpX_C = (double)y - triangle.vertexes[2].y;
+
 		for (int x = startX; x < endX; x++) {
-			Point2D currentPixel = { (double)x,(double)y };
-			if (triangle.PointInTriangle(currentPixel)) {
+			bool edge1 = false, edge2 = false, edge3 = false;
+			
+			double pointPerpY_A = -1 * ((double)x - triangle.vertexes[0].x);
+			edge1 = deltaX_A * pointPerpX_A + deltaY_A * pointPerpY_A <= 0;
+
+			if (edge1) {
+				double pointPerpY_B = -1 * ((double)x - triangle.vertexes[1].x);
+				edge2 = deltaX_B * pointPerpX_B + deltaY_B * pointPerpY_B <= 0;
+			}
+			
+			if (edge1 && edge2) {
+				double pointPerpY_C = -1 * ((double)x - triangle.vertexes[2].x);
+				edge3 = deltaX_C * pointPerpX_C + deltaY_C * pointPerpY_C <= 0;
+			}
+
+			if (edge1 && edge2 && edge3) {
 				texture.SetColor(texturePointer, color);
 			}
 			else {
@@ -58,7 +60,7 @@ void Rasterizer::DrawTriangle(Target& texture, Triangle2D triangle, RGBColor col
 			}
 		}
 
-		for (int i = endX; i < image.GetWidth(); i++) {
+		for (int i = endX; i < texture.width; i++) {
 			texture.SkipPixel(texturePointer);
 		}
 	}

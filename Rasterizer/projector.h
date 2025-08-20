@@ -3,12 +3,17 @@
 #include "geometry2D.h"
 
 class ProjectorCamera {
+
+	double fovRadians;
+	double scale;
+	Point2D centerOffset;
+
 public:
 
 	/** 
 	* @brief Constructs a new Camera object
 	*/
-	ProjectorCamera() {};
+	ProjectorCamera();
 
 	/**
 	* @brief Constructs a new Camera object
@@ -21,10 +26,7 @@ public:
 	* @param position The 3D position of the Camera
 	* @param fov The field of view of the Camera
 	*/
-	ProjectorCamera(Point3D position, double fov) : 
-		position(position), 
-		fov(fov) 
-	{};
+	ProjectorCamera(Point3D position, double fov);
 
 	/**
 	* @brief Constructs a new Camera object
@@ -33,12 +35,7 @@ public:
 	* @param width The width of the output image
 	* @param height The height of the output image
 	*/
-	ProjectorCamera(Point3D position, double fov, int width, int height) :
-		position(position),
-		fov(fov),
-		width(width),
-		height(height)
-	{};
+	ProjectorCamera(Point3D position, double fov, int width, int height);
 
 
 	/**

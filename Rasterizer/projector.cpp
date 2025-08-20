@@ -1,12 +1,33 @@
 #include "projector.h"
 #include <cmath>
 
+ProjectorCamera::ProjectorCamera() {
+	fovRadians = fov * (3.14159265 / 180.0);
+	scale = tan(fovRadians / 2) * 2;
+	centerOffset = { 1.0 / 2, (0.5 * ((double)height / (double)width)) };
+}
+
+ProjectorCamera::ProjectorCamera(Point3D position, double fov) {
+	this->position = position;
+	this->fov = fov;
+
+	fovRadians = fov * (3.14159265 / 180.0);
+	scale = tan(fovRadians / 2) * 2;
+	centerOffset = { 1.0 / 2, (0.5 * ((double)height / (double)width)) };
+}
+
+ProjectorCamera::ProjectorCamera(Point3D position, double fov, int width, int height) {
+	this->position = position;
+	this->fov = fov;
+	this->width = width;
+	this->height = height;
+
+	fovRadians = fov * (3.14159265 / 180.0);
+	scale = tan(fovRadians / 2) * 2;
+	centerOffset = { 1.0 / 2, (0.5 * ((double)height / (double)width)) };
+}
+
 Point2D ProjectorCamera::ProjectTo2D(Point3D point) {
-
-	double fovRadians = fov * (3.14159265 / 180.0);
-	double scale = tan(fovRadians / 2) * 2;
-
-	Point2D centerOffset = { 1.0 / 2, (0.5 * ((double)height / (double)width)) };
 
 	Point3D projPoint3D = point;
 	projPoint3D = projPoint3D - position;

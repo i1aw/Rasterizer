@@ -92,9 +92,7 @@ class Triangle2D {
 	int endX = 0;
 	int endY = 0;
 
-	Vector2D vectors[3];
-
-	void CalculateVectors();
+	/*void CalculateVectors();*/
 public:
 	/**
 	* @brief Creates a triangle
@@ -109,13 +107,6 @@ public:
 	* @note for compatibility with rasterizer, initialize A, B, and C clockwise
 	*/
 	Triangle2D(Point2D A, Point2D B, Point2D C);
-
-	/**
-	* @brief Returns if a point is in a triangle
-	* @param point The point to check
-	* @return Returns if the point is in the triangle
-	*/
-	bool PointInTriangle(Point2D point);
 
 	/**
 	* @brief The vertexes that make up the triangle

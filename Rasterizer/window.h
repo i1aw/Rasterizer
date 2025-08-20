@@ -13,7 +13,7 @@ public:
 	Texture2D texture; 
 	unsigned char* textureBytes = nullptr;
 
-	Window(int width, int height, const char* title);
+	Window(int width, int height, const char* title, int fps);
 	~Window();
 	void Update();
 	void Update(Target& newTexture);

@@ -2,7 +2,7 @@
 #include "constants.h"
 #include "RenderTarget.h"
 
-Window::Window(int width = 600, int height = 400, const char* title="Unnamed Window") {
+Window::Window(int width = 600, int height = 400, const char* title="Unnamed Window", int fps = 60) {
 	this->width = width;
 	this->height = height;
 	InitWindow(width, height, title);
@@ -13,7 +13,7 @@ Window::Window(int width = 600, int height = 400, const char* title="Unnamed Win
 
 	textureBytes = new unsigned char[width * height * 4];
 
-	SetTargetFPS(60);
+	SetTargetFPS(fps);
 
 	texture = LoadTextureFromImage(GenImageColor(width, height, WHITE));
 }
