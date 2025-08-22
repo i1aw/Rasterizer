@@ -39,7 +39,7 @@ Point2D ProjectorCamera::ProjectTo2D(Point3D point) {
 
 	// correct for FOV
 	projPoint2D = projPoint2D / scale;
-	
+
 	// account for center offset
 	projPoint2D = projPoint2D + centerOffset;
 

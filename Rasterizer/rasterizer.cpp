@@ -6,13 +6,14 @@ Rasterizer::Rasterizer() {
 }
 
 void Rasterizer::DrawTriangle(Target& texture, Triangle2D triangle, RGBColor color) {
-	texture.Fill({ 0,0,0 });
 	unsigned char* texturePointer = texture.texture;
 
 	int startX = std::max(triangle.getMinX(), 0);
 	int endX = std::min(triangle.getMaxX(), texture.width);
 	int startY = std::max(triangle.getMinY(), 0);
 	int endY = std::min(triangle.getMaxY(), texture.height);
+
+	if (startX >= endX || startY >= endY) return;
 
 	// skip to first row with triangle
 	texture.SkipPixel(texturePointer, startY * texture.width);
@@ -27,7 +28,7 @@ void Rasterizer::DrawTriangle(Target& texture, Triangle2D triangle, RGBColor col
 	double deltaY_C = triangle.vertexes[0].y - triangle.vertexes[2].y;
 
 
-	for (int y = endY - 1; y >= startY; y--) {
+	for (int y = startY; y < endY; y++) {
 
 		// skip to get to the first column
 		texture.SkipPixel(texturePointer, startX);
@@ -40,19 +41,19 @@ void Rasterizer::DrawTriangle(Target& texture, Triangle2D triangle, RGBColor col
 			bool edge1 = false, edge2 = false, edge3 = false;
 			
 			double pointPerpY_A = -1 * ((double)x - triangle.vertexes[0].x);
-			edge1 = deltaX_A * pointPerpX_A + deltaY_A * pointPerpY_A <= 0;
+			edge1 = deltaX_A * pointPerpX_A + deltaY_A * pointPerpY_A < 0;
 
 			if (edge1) {
 				double pointPerpY_B = -1 * ((double)x - triangle.vertexes[1].x);
-				edge2 = deltaX_B * pointPerpX_B + deltaY_B * pointPerpY_B <= 0;
+				edge2 = deltaX_B * pointPerpX_B + deltaY_B * pointPerpY_B < 0;
 			}
 			
-			if (edge1 && edge2) {
+			if (edge2) {
 				double pointPerpY_C = -1 * ((double)x - triangle.vertexes[2].x);
-				edge3 = deltaX_C * pointPerpX_C + deltaY_C * pointPerpY_C <= 0;
+				edge3 = deltaX_C * pointPerpX_C + deltaY_C * pointPerpY_C < 0;
 			}
 
-			if (edge1 && edge2 && edge3) {
+			if (edge3) {
 				texture.SetColor(texturePointer, color);
 			}
 			else {
@@ -63,6 +64,15 @@ void Rasterizer::DrawTriangle(Target& texture, Triangle2D triangle, RGBColor col
 		for (int i = endX; i < texture.width; i++) {
 			texture.SkipPixel(texturePointer);
 		}
+	}
+}
+
+void Rasterizer::DrawCollection(Target& texture, Collection & obj, ProjectorCamera & cam, RGBColor color) {
+
+	int faceCount = obj.GetFaceCount();
+	for (int i = 0; i < faceCount; i++) {
+		Triangle2D flattenFace = cam.ProjectTo2D(obj.GetFace(i));
+		this->DrawTriangle(texture, flattenFace, color);
 	}
 }
 

@@ -4,6 +4,8 @@
 #include "Geometry2D.h"
 #include "window.h"
 #include "RenderTarget.h"
+#include "geometry3D.h"
+#include "projector.h"
 
 /**
 * @class Rasterizer
@@ -47,4 +49,6 @@ public:
 	//void DrawTriangle(Window window, Triangle2D triangle, RGBColor color);
 
 	void DrawTriangle(Target& texture, Triangle2D triangle, RGBColor color);
+
+	void DrawCollection(Target& texture, Collection & obj, ProjectorCamera & cam, RGBColor color);
 };

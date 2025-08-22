@@ -14,12 +14,13 @@ Target::~Target() {
 }
 
 void Target::Fill(RGBColor c) {
-	for (int i = 0; i < width * height * PIXEL_SIZE; i += PIXEL_SIZE) {
-		texture[i + 0] = c.red;
-		texture[i + 1] = c.green;
-		texture[i + 2] = c.blue;
-		texture[i + 3] = (unsigned char)255;
-	}
+	const uint32_t packed = (uint32_t)c.red |
+		((uint32_t)c.green << 8) |
+		((uint32_t)c.blue << 16) |
+		(0xFFu << 24);
+	auto* p32 = reinterpret_cast<uint32_t*>(texture);
+	const size_t count = (size_t)width * height;
+	std::fill_n(p32, count, packed);  // one store per pixel
 }
 
 void Target::SetColor(unsigned char*& location, RGBColor c) {

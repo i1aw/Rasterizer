@@ -1,5 +1,6 @@
 #pragma once
 #include "constants.h"
+#include <algorithm>
 
 class Target {
 	static const int PIXEL_SIZE = 4;

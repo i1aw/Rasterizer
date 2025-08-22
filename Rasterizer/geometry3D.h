@@ -35,3 +35,25 @@ public:
 	Point3D vertexes[3];
 
 };
+
+/**
+* @class Collection
+* @brief A collection of triangle3Ds
+*/
+class Collection {
+	int vertexCount = 0;
+	int faceCount = 0;
+	Point3D* vertexes = nullptr;
+	int** faces = nullptr;
+
+
+public:
+	
+	Collection();
+	~Collection();
+	Collection(Point3D * vertexes, int vertexCount, int** faces, int faceCount);
+	Triangle3D GetFace(int index);
+	int GetFaceCount() const { return faceCount; };
+	void AddFace(Triangle3D triangle);
+
+};
